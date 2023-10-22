@@ -1,13 +1,14 @@
 <html>
     <head>
+        <link rel="stylesheet" href="style.css">
         <title>
             Main Page
         </title>
     </head>
     <body>
-        <form>
-            <input type="button" onclick="window.location.href='/shutdown';" value="shutdown server"/>
-            <input type="button" onclick="window.location.href='/restart';" value="restart server"/>
-        </form>
+        <div class="flex center vertical">
+            <input type="button" class="flex-item button" onclick="window.location.href='/shutdown';" value="🌙 shutdown server"/>
+            <input type="button" class="flex-item button" onclick="window.location.href='/restart';" value="🔄 restart server"/>
+        </div>
     </body>
 <html>

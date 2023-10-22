@@ -1,0 +1,47 @@
+body {
+    background-color: #212830;
+    padding: 0px;
+    margin: 0px;
+}
+
+.button {
+    background-color: #202020;
+    color: white;
+    border-radius: 0.2em;
+    border: 0px;
+    font-size: 2em;
+    padding: 0.5em;
+    width: 50%;
+}
+.button:hover {
+    cursor: pointer;
+}
+
+.flex {
+    display: flex;
+}
+
+.vertical {
+    flex-flow: column;
+}
+
+.message {
+    text-align: center;
+    background-color: #202020;
+    color: white;
+    border-radius: 0.2em;
+    border: 0px;
+    font-size: 2em;
+    padding: 0.5em;
+    width: 50%;
+}
+
+.center {
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.flex-item {
+    margin: 0.5em;
+}

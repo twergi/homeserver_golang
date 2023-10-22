@@ -9,9 +9,9 @@ body {
     color: white;
     border-radius: 0.2em;
     border: 0px;
-    font-size: 2em;
+    font-size: 4em;
     padding: 0.5em;
-    width: 50%;
+    width: 80%;
 }
 .button:hover {
     cursor: pointer;
@@ -33,7 +33,7 @@ body {
     border: 0px;
     font-size: 2em;
     padding: 0.5em;
-    width: 50%;
+    width: 80%;
 }
 
 .center {

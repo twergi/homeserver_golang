@@ -20,7 +20,7 @@ func getLocalIP() string {
 }
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
-	file, err := os.Open("static/index.html")
+	file, err := os.Open("static/html/index.html")
 
 	if err != nil {
 		panic(err)
@@ -38,7 +38,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func shutdownHandler(w http.ResponseWriter, r *http.Request) {
-	file, err := os.Open("static/shutdown.html")
+	file, err := os.Open("static/html/shutdown.html")
 
 	if err != nil {
 		panic(err)
@@ -62,7 +62,7 @@ func shutdownHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func restartHandler(w http.ResponseWriter, r *http.Request) {
-	file, err := os.Open("static/restart.html")
+	file, err := os.Open("static/html/restart.html")
 
 	if err != nil {
 		panic(err)
@@ -89,6 +89,7 @@ func main() {
 	http.HandleFunc("/", indexHandler)
 	http.HandleFunc("/shutdown", shutdownHandler)
 	http.HandleFunc("/restart", restartHandler)
+	http.Handle("/styles/", http.StripPrefix("/styles/", http.FileServer((http.Dir("static/css")))))
 
 	ip := getLocalIP()
 	port := "8000"

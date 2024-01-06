@@ -13,8 +13,13 @@ body {
     padding: 0.5em;
     width: 80%;
 }
+
 .button:hover {
     cursor: pointer;
+}
+
+.separator {
+    width: 80%;
 }
 
 .flex {

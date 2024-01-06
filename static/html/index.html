@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
         <link rel="stylesheet" href="/styles/style.css">
@@ -7,6 +8,8 @@
     </head>
     <body>
         <div class="flex center vertical">
+            <input type="button" class="flex-item button" onclick="window.location.assign('http:\/\/{{ .HostIP}}:8080');" value="🌀 qbittorrent">
+            <hr class="separator">
             <input type="button" class="flex-item button" onclick="window.location.href='/shutdown';" value="🌙 shutdown server"/>
             <input type="button" class="flex-item button" onclick="window.location.href='/restart';" value="🔄 restart server"/>
         </div>

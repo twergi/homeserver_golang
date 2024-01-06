@@ -1,11 +1,16 @@
 package main
 
 import (
+	"fmt"
+	"html/template"
 	"net"
 	"net/http"
 	"os"
 	"os/exec"
 )
+
+var IP string = getLocalIP()
+var Port string = "8000"
 
 func getLocalIP() string {
 	conn, err := net.Dial("udp", "8.8.8.8:80")
@@ -20,21 +25,13 @@ func getLocalIP() string {
 }
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
-	file, err := os.Open("static/html/index.html")
+	tmpl, _ := template.ParseFiles("static/html/index.html")
 
-	if err != nil {
-		panic(err)
-	}
-	defer file.Close()
-
-	data := make([]byte, 512)
-	_, err = file.Read(data)
-
-	if err != nil {
-		panic(err)
-	}
-
-	w.Write(data)
+	tmpl.Execute(w, struct {
+		HostIP string
+	}{
+		HostIP: IP,
+	})
 }
 
 func shutdownHandler(w http.ResponseWriter, r *http.Request) {
@@ -91,9 +88,7 @@ func main() {
 	http.HandleFunc("/restart", restartHandler)
 	http.Handle("/styles/", http.StripPrefix("/styles/", http.FileServer((http.Dir("static/css")))))
 
-	ip := getLocalIP()
-	port := "8000"
-	fullAddr := ip + ":" + port
+	fullAddr := fmt.Sprintf("%s:%s", IP, Port)
 
 	println("starting server on:", fullAddr)
 	err := http.ListenAndServe(fullAddr, nil)

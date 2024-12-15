@@ -11,7 +11,7 @@ import (
 )
 
 var IP string = getLocalIP()
-var Port string = "8000"
+var Port string = "80"
 
 func getLocalIP() string {
 	conn, err := net.Dial("udp", "8.8.8.8:80")

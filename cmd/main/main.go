@@ -269,6 +269,12 @@ func startCmd(cmd *exec.Cmd) error {
 	if err != nil {
 		return err
 	}
+	go func() {
+		err := cmd.Wait()
+		if err != nil {
+			fmt.Println("error waiting for cmd:", err)
+		}
+	}()
 
 	log.Println("process started:", cmd.Process)
 

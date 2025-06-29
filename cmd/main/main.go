@@ -265,6 +265,10 @@ func runCmd(cmd *exec.Cmd) error {
 }
 
 func startCmd(cmd *exec.Cmd) error {
+	var stdoutBuf, stderrBuf bytes.Buffer
+	cmd.Stdout = &stdoutBuf
+	cmd.Stderr = &stderrBuf
+
 	err := cmd.Start()
 	if err != nil {
 		return err
@@ -272,7 +276,11 @@ func startCmd(cmd *exec.Cmd) error {
 	go func() {
 		err := cmd.Wait()
 		if err != nil {
-			fmt.Println("error waiting for cmd:", err)
+			log.Printf("started process returned error: %v\nSTDOUT:\n%s\nSTDERR:\n%s\n",
+				err, stdoutBuf.String(), stderrBuf.String())
+		} else {
+			log.Printf("started process successfully returned.\nSTDOUT:\n%s\nSTDERR:\n%s\n",
+				stdoutBuf.String(), stderrBuf.String())
 		}
 	}()
 

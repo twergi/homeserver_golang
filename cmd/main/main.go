@@ -193,7 +193,7 @@ func toggleMinecraftServerHandler(w http.ResponseWriter, r *http.Request) {
 	if ok {
 		err = killPID(pid)
 	} else {
-		err = startMinecraftServer("/home/twergi/projects/minecraft_server/paper-server.jar")
+		err = startMinecraftServer("paper-server.jar")
 	}
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
@@ -246,6 +246,7 @@ func killPID(pid int) error {
 
 func startMinecraftServer(serverPath string) error {
 	cmd := exec.Command("java", "-Xmx7G", "-Xms2G", "-jar", serverPath, "nogui")
+	cmd.Dir = "/home/twergi/projects/minecraft_server"
 	return startCmd(cmd)
 }
 
